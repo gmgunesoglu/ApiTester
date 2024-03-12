@@ -1,0 +1,77 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Demo Api & Swagger",
+    "description": "Demo project for swagger use with typescript",
+    "license": {
+      "name": "demo license",
+      "url": "https://www.google.com"
+    }
+  },
+  "host": "localhost:4000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Todo",
+      "description": "You can manage your homeworks here..."
+    }
+  ],
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/todos":{
+        "get": {
+            "tags": ["Todo"],
+            "summary": "Get all todos.",
+            "responses": {
+                "200":{
+                    "description": "OK",
+                    "schema":{
+                        "$ref": "#definitions/Todo"
+                    }
+                }
+            }
+        },
+        "post": {
+            "tags": ["Todo"],
+            "summary": "Add new todo.",
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "description": "Todo that wanted to add",
+                    "schema": {
+                        "$ref": "#definitions/Todo"
+                    }
+                }
+            ],
+            "produces":[
+                "application/json"
+            ],
+            "responses": {
+                "200":{
+                    "description": "OK",
+                    "schema":{
+                        "$ref": "#definitions/Todo"
+                    }
+                },
+                "400":{
+                    "description": "Failed. Bad post data."
+                }
+            }
+        }
+    }
+  },
+  "definitions": {
+    "Todo": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
